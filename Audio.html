@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>珍珠美人魚KYV</title>
+    <link rel="icon" href="img/favicon.ico">
+    <link rel="stylesheet" href="Audio.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <audio id="myAudio">
+        <source type="audio/mpeg">
+    </audio>
+
+    <div id="controlPanel">
+        <!-- 背景 -->
+        <div id="BG">
+            <div></div>
+            <div></div>
+        </div>
+
+        <!-- 音量控制 -->
+        <div id="volControl">
+            <input type="button" value=" " onclick="setVolume(-1)">
+            <input type="range" value="20" oninput="setVolumeByRangerBar()">
+            <input type="button" value=" " onclick="setVolume(1)">
+            <input type="text" readonly value="20">
+        </div>
+
+        <div id="container">
+            <!-- 裝飾圈圈 -->
+            <div id="left">
+                <div></div>
+                <span>♫</span>
+                <div></div>
+                <div></div>
+            </div>
+
+            <div id="right">
+                <!-- 選歌單 -->
+                <div id="topInfo">
+                    <div>NO PLAY</div>
+                    <select id="musicPool" onchange="changeMisic(0)">
+                        <!-- <option>Search</option> -->
+                    </select>
+                </div>
+                <div id="midInfo">
+                    <div></div>
+                    <div>用閃亮的歌聲開始現場演唱</div>
+                </div>
+
+                <div id="funcBtn">
+                    <div>
+                        <span data-title="播放" onclick="playMisic()">4</span>
+                        <span data-title="停止" onclick="stopMisic()">&lt;</span>
+                        <span data-title="上一首" onclick="changeMisic(-1)">9</span>
+                        <span data-title="後退" onclick="changeTime(-10)">7</span>
+                        <span data-title="前進" onclick="changeTime(10)">8</span>
+                        <span data-title="下一首" onclick="changeMisic(1)">:</span>
+                    </div>
+                    <div>
+                        <span data-title="靜音" onclick="setMuted()">V</span>
+                        <span data-title="單曲循環" onclick="setfuncBtnStatus(event)">q</span>
+                        <span data-title="隨機播放" onclick="setfuncBtnStatus(event)">s</span>
+                        <span data-title="全曲循環" onclick="setfuncBtnStatus(event)">`</span>
+                        <span data-title="歌本" onclick="showBook()">l</span>
+                    </div>
+                </div>
+
+                <input type="range" id="progressBar" value="0" max="1000" oninput="setProgress()">
+                <div id="bottomInfo">
+                    <div>00 : 00</div>
+                    <div>00 : 00</div>
+                </div>
+
+                <!-- 隱藏欄位 -->
+                <div id="book" class="hide">
+                    <div>MUSIC LIST</div>
+                    <div ondrop="drop(event)" ondragover="allowDrop(event)">
+                        <div title="BelieveYourself.mp3">相信自己</div>
+                        <div title="LegendOfMermaid.mp3">七彩的微風</div>
+                        <div title="DarkBaroque.mp3">黑暗的巴洛克</div>
+                        <div title="TreasureOfLove.mp3">愛的百寶箱</div>
+                        <div title="RainbowNotes.mp3">RainbowNotes</div>
+                    </div>
+                    <div ondrop="drop(event)" ondragover="allowDrop(event)">
+                    </div>
+                    <div>
+                        <button onclick="updateMusic()">UPDATE</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="Audio.js"></script>
+        <script>
+            for (var i = 1; i <= 2; i++) {
+                var book = document.getElementById("book");
+                var newDiv = document.createElement("div");
+                book.appendChild(newDiv);
+                for (var j = 1; j <= 9; j++) {
+                    var newSpan = document.createElement("span");
+                    newDiv.appendChild(newSpan);
+                }
+            }
+        </script>
+</body>
+
+</html>
